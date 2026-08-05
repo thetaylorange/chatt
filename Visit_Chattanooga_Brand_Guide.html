@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visit Chattanooga — Brand Guide</title>
+<link rel="stylesheet" href="https://use.typekit.net/bxz6cpu.css">
+<!-- TYPE: Filson Pro via Adobe Fonts kit bxz6cpu. Arial/system sans is the fallback if the kit fails to load. -->
+<style>
+  :root{
+    --base-locomotive:#101820;
+    --base-gold:#E2AA00;
+    --base-teal:#007D77;
+    --base-blue:#006682;
+    --base-brick:#852B26;
+    --base-green:#6B6C36;
+
+    --logo-ink:#101820;
+    --logo-gold:#dcab00;
+
+    --ui-error:#D4282F;
+    --ui-success:#BCCF11;
+    --ui-warning:#E2AA00;
+    --ui-info:#0099AD;
+
+    --paper:#ffffff;
+    --ink:#101820;
+    --ink-soft:#678096;
+    --line:#C0CFD7;
+    --line-faint:rgba(16,24,32,0.08);
+    --num-ghost:rgba(16,24,32,0.10);
+
+    --sans: 'filson-pro', Arial, Helvetica, sans-serif;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  a{color:inherit;}
+  ::selection{ background:var(--base-gold); color:var(--ink); }
+
+  .wrap{ max-width:1240px; margin:0 auto; padding:0 40px; }
+  @media (max-width:640px){ .wrap{padding:0 22px;} }
+
+  /* ---------- Nav ---------- */
+  header.top{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar{ display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px; }
+  .brandlock{ display:flex; align-items:center; gap:14px; }
+  .brandlock .mark{ height:52px; width:auto; display:block; }
+  .brandlock .mark path{ fill:var(--logo-ink); }
+  .brandlock .tag{
+    font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--ink-soft); border-left:1px solid var(--line); padding-left:14px;
+  }
+  nav.sections{ display:flex; gap:30px; }
+  nav.sections a{ margin-left:30px; }
+  nav.sections a:first-child{ margin-left:0; }
+  nav.sections a{
+    font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;
+    text-decoration:none; color:var(--ink-soft); font-weight:700;
+    padding-bottom:4px; border-bottom:1px solid transparent;
+    transition:color .15s, border-color .15s;
+  }
+  nav.sections a:hover{ color:var(--ink); border-color:var(--base-brick); }
+  @media (max-width:820px){ nav.sections{ display:none; } }
+
+  /* ---------- Section frame: gutter numeral ---------- */
+  section{ padding-top:64px; padding-bottom:76px; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .section-head{
+    display:grid; grid-template-columns:120px 1fr; gap:32px;
+    margin-bottom:52px; padding-top:60px;
+  }
+  @media (max-width:640px){ .section-head{ grid-template-columns:1fr; gap:14px; } }
+  .section-head .num{
+    font-size:66px; font-weight:800; line-height:1;
+    color:var(--num-ghost); border-right:1px solid var(--line);
+    padding-right:20px;
+  }
+  @media (max-width:640px){ .section-head .num{ border-right:none; border-bottom:1px solid var(--line); padding:0 0 12px; font-size:40px; } }
+  .section-head h2{
+    font-weight:800; text-transform:uppercase; letter-spacing:.03em;
+    font-size:clamp(22px,2.6vw,32px);
+  }
+  .section-head .section-note{ max-width:56ch; color:var(--ink-soft); font-size:15px; margin-top:12px; }
+
+  /* ---------- Color specimen bands ---------- */
+  .family-grid{ display:flex; flex-direction:column; gap:16px; }
+  .family{ border:1px solid var(--line); display:grid; grid-template-columns:220px 1fr; }
+  .family.no-label{ grid-template-columns:1fr; }
+  @media (max-width:760px){ .family{ grid-template-columns:1fr; } }
+  .family-label{ padding:24px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid var(--line); }
+  @media (max-width:760px){ .family-label{ border-right:none; border-bottom:1px solid var(--line); } }
+  .family-label .pantone-name{ font-size:11px; letter-spacing:.06em; color:var(--ink-soft); text-transform:uppercase; font-weight:700; }
+  .family-label h3{ font-size:19px; font-weight:800; margin-top:8px; text-transform:uppercase; letter-spacing:.09em; }
+  .family-label .base-hex{ font-size:13px; margin-top:10px; color:var(--ink); opacity:.65; }
+
+  .swatch-row{ display:flex; }
+  @media (max-width:520px){ .swatch-row{ flex-wrap:wrap; } }
+  .swatch{ flex:1; min-width:70px; min-height:110px; position:relative; display:flex; align-items:flex-end; cursor:pointer; border-left:1px solid rgba(255,255,255,.15); }
+  .swatch:first-child{ border-left:none; }
+  .swatch .tag{ width:100%; padding:10px; font-size:11px; display:flex; flex-direction:column; gap:2px; }
+  .swatch .tag .hex{ font-weight:700; }
+  .swatch .tag .cp{ opacity:.65; font-size:10px; }
+  .swatch.base{ flex:1.5; }
+  .swatch-row.equal .swatch.base{ flex:1; }
+  .swatch.base::after{
+    content:'BASE'; position:absolute; top:10px; right:10px; font-size:9px; font-weight:700;
+    letter-spacing:.08em; padding:3px 6px; border:1px solid currentColor; opacity:.6;
+  }
+  .swatch.proposed::after{
+    content:'PROPOSED'; position:absolute; top:10px; right:10px; font-size:9px; font-weight:700;
+    letter-spacing:.06em; padding:3px 6px; border:1px dashed currentColor; opacity:.7;
+  }
+  .swatch .copied{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; background:inherit; opacity:0; transition:opacity .15s; pointer-events:none; }
+  .swatch.copied-active .copied{ opacity:1; }
+
+
+  /* ---------- UI state color legend ---------- */
+  .state-legend{ margin-top:14px; display:flex; }
+  .state-legend div{ flex:1; padding:0 16px 0; }
+  .state-legend div:first-child{ padding-left:0; }
+  @media (max-width:700px){ .state-legend{ flex-wrap:wrap; } .state-legend div{ flex:0 0 50%; } }
+  .state-legend .name{ font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+  .state-legend p{ font-size:13.5px; color:var(--ink-soft); margin-top:6px; }
+  .scope-note{
+    margin-top:26px; padding:16px 18px 30px; border-left:2px solid var(--line);
+    font-size:13.5px; color:var(--ink-soft); font-style:italic;
+  }
+
+  /* ---------- Logo demo ---------- */
+  .logo-demo{ display:grid; grid-template-columns:1.3fr 1fr; border:1px solid var(--line); }
+  @media (max-width:800px){ .logo-demo{ grid-template-columns:1fr; } }
+  .logo-stage{ position:relative; min-height:460px; display:flex; align-items:center; justify-content:center; padding:40px; transition:background .2s; border-right:1px solid var(--line); }
+  @media (max-width:800px){ .logo-stage{ border-right:none; border-bottom:1px solid var(--line); min-height:340px; } }
+  .stage-error{
+    position:absolute; inset:16px; display:none; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:32px; border:1px dashed var(--ui-error);
+  }
+  .stage-error.active{ display:flex; }
+  .stage-error-title{ font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ui-error); }
+  .stage-error-msg{ margin-top:10px; font-size:14px; color:var(--ink-soft); max-width:30ch; }
+  .logo-stage svg{ width:100%; max-width:420px; height:auto; }
+  @media (max-width:640px){ .logo-stage svg{ max-width:280px; } }
+  .logo-controls{ padding:30px; display:flex; flex-direction:column; gap:22px; }
+  .ctrl-group .label{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; font-weight:700; color:var(--ink-soft); margin-bottom:10px; }
+  .btn-row{ display:flex; gap:8px; flex-wrap:wrap; }
+  .btn-row button{ font-size:13px; font-weight:700; padding:9px 14px; border:1px solid var(--ink); background:transparent; color:var(--ink); cursor:pointer; transition:background .15s, color .15s; font-family:var(--sans); }
+  .btn-row button.active{ background:var(--ink); color:#fff; }
+  .btn-row button:hover:not(.active){ background:var(--line); }
+
+  /* ---------- Typography: applied web scale ---------- */
+  .scale-list{ border-top:1px solid var(--line); }
+  .scale-row{ display:grid; grid-template-columns:230px 1fr; gap:32px; padding:40px 0; border-bottom:1px solid var(--line); align-items:center; }
+  @media (max-width:760px){ .scale-row{ grid-template-columns:1fr; gap:16px; } }
+  .scale-name{ font-size:13px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+  .scale-spec{ display:block; margin-top:10px; font-size:11.5px; line-height:1.7; background:var(--paper); padding:8px 10px; border:1px solid var(--line); color:var(--ink-soft); }
+  .scale-use{ margin-top:10px; font-size:13px; color:var(--ink-soft); }
+  .scale-sample{ color:var(--ink); overflow-wrap:anywhere; }
+  .h1-sample{ font-weight:800; text-transform:uppercase; letter-spacing:.02em; font-size:clamp(40px,6vw,64px); line-height:1.0; }
+  .h2-sample{ font-weight:800; text-transform:uppercase; letter-spacing:.03em; font-size:clamp(26px,3vw,34px); }
+  .h3-sample{ font-weight:800; text-transform:uppercase; letter-spacing:.09em; font-size:19px; }
+  .label-sample{ font-weight:700; text-transform:uppercase; letter-spacing:.125em; font-size:13px; color:var(--base-brick); }
+  .body-sample{ font-weight:400; font-size:16px; line-height:1.6; color:var(--ink-soft); max-width:50ch; }
+  .stat-sample{ font-weight:800; font-size:clamp(36px,5vw,56px); font-variant-numeric:tabular-nums; line-height:1; }
+  .stat-sample .stat-label{ display:block; margin-top:10px; font-size:13px; font-weight:400; color:var(--ink-soft); text-transform:none; letter-spacing:normal; }
+
+  /* ---------- Roadmap list ---------- */
+  .road-list{ border-top:1px solid var(--line); }
+  .road-row{ display:grid; grid-template-columns:70px 1fr auto; align-items:baseline; gap:20px; padding:22px 0; border-bottom:1px solid var(--line); }
+  @media (max-width:560px){ .road-row{ grid-template-columns:40px 1fr; } .road-row .status{ grid-column:2; } }
+  .road-row .idx{ font-size:13px; color:var(--ink-soft); font-weight:700; }
+  .road-row h4{ font-size:18px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; }
+  .road-row .status{ font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:700; color:var(--ink-soft); border:1px solid var(--line); padding:5px 10px; white-space:nowrap; }
+
+  footer{ padding-top:36px; padding-bottom:44px; }
+  footer .brandlock .mark{ height:26px; }
+  footer p{ font-size:12px; color:var(--ink-soft); margin-top:14px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap topbar">
+    <div class="brandlock">
+      <svg class="mark" viewBox="0 0 2000 2000" aria-label="Visit Chattanooga">
+        <path d="M694.07,528.8l-83.61,21.06v162.95c-18.93,4.06-37.93,9.25-56.8,14.56v-163.18s-83.61,20.78-83.61,20.78v449.05c27.86-11.51,55.64-20.84,83.61-29.21v-208.99c18.7-5.64,37.84-11.36,56.8-15.4,0,68.63,0,132.14,0,209.82,27.87-6.06,55.73-10.88,83.61-13.89v-447.53Z"/>
+        <path d="M958.15,462.63l-165.94,41.82c-37.65,9.67-58.08,30.24-58.08,69.16v398.97c27.87-.93,55.74-2.91,83.61-1.44v-211.06c18.35.65,38.3,1.52,56.8,3.1,0,60.79,0,147.22,0,210.97,27.87,2.73,55.74,5.84,83.61,9.57V462.63ZM817.74,693.73v-98.01c0-13.01,8.85-24.35,21.48-27.51l35.32-8.84s0,103.68,0,137.45c-18.94-1.66-37.88-2.41-56.8-3.09Z"/>
+        <path d="M998.22,452.6v75.83l69.93-17.49v489.21c27.87,3.9,55.73,5.89,83.61,8.86,0-135.55,0-518.9,0-518.9l110.12-27.64v553.57c27.87.87,55.74-.77,83.61-2.73V441.59s23.21-5.83,29.34-7.36c-.38-35.34.74-64.84,19.58-80.98l-396.17,99.35Z"/>
+        <path d="M333.61,1014.86v-320.39s96.37-24.1,96.37-24.1v-75.31l-123.81,30.71c-37.65,10.09-56.16,29.11-56.16,67.4,0,0,0,254.1,0,416.78,0,38.17,17.28,34.85,56.17,9.3,42.23-27.74,86.53-49.72,123.81-67.87,0-28.94,0-59.44,0-87.43-32,14.95-64.26,31.29-96.37,50.9Z"/>
+        <path d="M1639.05,291.9l-165.94,41.85c-37.65,9.09-58.08,29.32-58.08,68.19v600.82c27.87-6.13,55.64-14.21,83.6-25.4v-208.9c18.93-7.28,37.87-14.99,56.8-24.1v207.08c27.87-14.03,55.74-32.66,83.61-52.28V291.9ZM1498.64,700.07v-274.68c0-13.01,8.86-24.35,21.48-27.51l35.32-8.84v284.98c-18.84,9.47-37.87,18.87-56.8,26.05Z"/>
+        <path fill="var(--logo-gold)" d="M958.16,1073.48c0-37.74-19.15-55.01-55.52-58.83-37.23-3.72-75.1-5.55-112.33-6.01-37.66-.31-56.16,18.88-56.16,57,0,120.79,0,249.26,0,387.77v137.12c0,37.31,20.42,46.56,56.16,37.32l112.33-28.21c37.65-9.63,55.52-29.99,55.52-66.03v-112h0v-348.13ZM873.91,1530.06l-56.16,14.44v-109.16s0,0,0,0v-352.89c18.43.69,37.13,1.72,56.16,3.11v444.5Z"/>
+        <path fill="var(--logo-gold)" d="M1221.7,1102.82c0-36.22-19.15-51.45-55.52-54.76-37.24-3.44-74.46-6.87-111.69-11.99-37.64-5.18-56.16,8.99-56.16,43.9,0,114.22,0,444.07,0,444.07,0,37.3,20.42,46.66,56.16,37.6l111.69-28.13c37.65-9.43,55.52-29.69,55.52-65.71,0,0,0-246.88,0-364.98ZM1138.09,1462.67l-56.16,14.35v-54.79h0v-308.83c18.72,2.24,37.44,3.88,56.16,5.79,0,107.54,0,207.66,0,305.3v38.18Z"/>
+        <path fill="var(--logo-gold)" d="M1485.88,1227.86c-28.36,9.71-55.94,18.13-83.6,23.05,0,7.22,0,144.08,0,144.08l-56.8,14.7s0-229.31,0-284.9c40.84-3.64,82.3-12.04,122.54-24.91,0-24.25,0-47.03,0-72.37-49.35,15.39-98.7,22.07-148.06,25.08-37.64,2.15-58.07,16.6-58.08,54.1,0,119.07,0,350.92,0,350.92,0,37.91,20.42,46.74,57.44,37.56l166.57-41.73s0-217.48,0-225.57Z"/>
+        <path fill="var(--logo-gold)" d="M1750,855.89c-55.55,52.42-110.32,91.76-165.94,122.59-37.76,20.93-58.08,38.99-58.08,77.75,0,133.91,0,387.16,0,387.16l83.61-20.92s0-105.02,0-148.98c18.59-11.66,38.08-24.05,56.8-38.13,0,47.64,0,172.83,0,172.83l83.61-20.96s0-415.64,0-531.32ZM1625.76,1020.26c14.84-10.23,29.68-21.91,44.53-33.53,0,56.72,0,115.87,0,169.81-18.91,14.47-38.33,29.86-56.8,41.63v-154.59c0-9.33,4.59-18.02,12.27-23.32Z"/>
+        <path fill="var(--logo-gold)" d="M694.07,1014.59c-27.96,3.25-56.1,8.34-83.6,14.64,0,39.73-.15,298.79-.15,298.79.05.08.1.17.15.25v28.58l-70.37-308.03c-22.65,7.38-47.42,16.51-70.04,26.3,0,148.25,0,632.99,0,632.99l83.61-21.04s0-305.12,0-341.33l56.8,230.2v96.96l83.61-20.96s0-501.45,0-637.34Z"/>
+      </svg>
+      <span class="tag">Brand Guide</span>
+    </div>
+    <nav class="sections">
+      <a href="#color">Color</a>
+      <a href="#logo">Logo</a>
+      <a href="#typography">Type</a>
+      <a href="#ui-colors">UI Colors</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="wrap" id="color">
+    <div class="section-head">
+      <div class="num">01</div>
+      <div>
+        <h2>Our brand colors</h2>
+        <p class="section-note">Locomotive and Gold are our two primary brand colors. Teal, Blue, Brick, and Green round out the palette as complementary secondary brand colors. Each base includes different tints or shades, with a Pantone Color Bridge reference. We are open to adjusting the tints/shades to accomplish a successful web palette, working around/maintaining the base 6 colors.</p>
+      </div>
+    </div>
+
+    <div class="family-grid">
+
+      <div class="family">
+        <div class="family-label">
+          <span class="pantone-name">Black 6 CP</span>
+          <h3>Locomotive</h3>
+          <span class="base-hex">#101820</span>
+        </div>
+        <div class="swatch-row">
+          <div class="swatch" style="background:#C0CFD7; color:#101820;" data-hex="#C0CFD7"><div class="tag"><span class="cp">5455 CP</span><span class="hex">#C0CFD7</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#A8BAC6; color:#101820;" data-hex="#A8BAC6"><div class="tag"><span class="cp">5435 CP</span><span class="hex">#A8BAC6</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#678096; color:#ffffff;" data-hex="#678096"><div class="tag"><span class="cp">5415 CP</span><span class="hex">#678096</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#354552; color:#ffffff;" data-hex="#354552"><div class="tag"><span class="cp">7546 CP</span><span class="hex">#354552</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#1A2D38; color:#ffffff;" data-hex="#1A2D38"><div class="tag"><span class="cp">7547 CP</span><span class="hex">#1A2D38</span></div><div class="copied">Copied</div></div>
+          <div class="swatch base" style="background:#101820; color:#ffffff;" data-hex="#101820"><div class="tag"><span class="cp">Black 6 CP</span><span class="hex">#101820</span></div><div class="copied">Copied</div></div>
+        </div>
+      </div>
+
+      <div class="family">
+        <div class="family-label">
+          <span class="pantone-name">110 CP</span>
+          <h3>Gold</h3>
+          <span class="base-hex">#E2AA00</span>
+        </div>
+        <div class="swatch-row">
+          <div class="swatch" style="background:#F5E163; color:#101820;" data-hex="#F5E163"><div class="tag"><span class="cp">113 CP</span><span class="hex">#F5E163</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#F2CE1B; color:#101820;" data-hex="#F2CE1B"><div class="tag"><span class="cp">116 CP</span><span class="hex">#F2CE1B</span></div><div class="copied">Copied</div></div>
+          <div class="swatch base" style="background:#E2AA00; color:#101820;" data-hex="#E2AA00"><div class="tag"><span class="cp">Gold 110 CP</span><span class="hex">#E2AA00</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#B78901; color:#ffffff;" data-hex="#B78901"><div class="tag"><span class="cp">118 CP</span><span class="hex">#B78901</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#AC7C12; color:#ffffff;" data-hex="#AC7C12"><div class="tag"><span class="cp">132 CP</span><span class="hex">#AC7C12</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#79571D; color:#ffffff;" data-hex="#79571D"><div class="tag"><span class="cp">7552 CP</span><span class="hex">#79571D</span></div><div class="copied">Copied</div></div>
+        </div>
+      </div>
+
+      <div class="family">
+        <div class="family-label">
+          <span class="pantone-name">6140 CP</span>
+          <h3>Teal</h3>
+          <span class="base-hex">#007D77</span>
+        </div>
+        <div class="swatch-row">
+          <div class="swatch" style="background:#A6D4CF; color:#101820;" data-hex="#A6D4CF"><div class="tag"><span class="cp">324 CP</span><span class="hex">#A6D4CF</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#00AEA5; color:#ffffff;" data-hex="#00AEA5"><div class="tag"><span class="cp">326 CP</span><span class="hex">#00AEA5</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#008F8B; color:#ffffff;" data-hex="#008F8B"><div class="tag"><span class="cp">6138 CP</span><span class="hex">#008F8B</span></div><div class="copied">Copied</div></div>
+          <div class="swatch base" style="background:#007D77; color:#ffffff;" data-hex="#007D77"><div class="tag"><span class="cp">Teal 6140 CP</span><span class="hex">#007D77</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#00645E; color:#ffffff;" data-hex="#00645E"><div class="tag"><span class="cp">7721 CP</span><span class="hex">#00645E</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#004B4D; color:#ffffff;" data-hex="#004B4D"><div class="tag"><span class="cp">316 CP</span><span class="hex">#004B4D</span></div><div class="copied">Copied</div></div>
+        </div>
+      </div>
+
+      <div class="family">
+        <div class="family-label">
+          <span class="pantone-name">634 CP</span>
+          <h3>Blue</h3>
+          <span class="base-hex">#006682</span>
+        </div>
+        <div class="swatch-row">
+          <div class="swatch" style="background:#BBDEDF; color:#101820;" data-hex="#BBDEDF"><div class="tag"><span class="cp">628 CP</span><span class="hex">#BBDEDF</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#85CBD2; color:#101820;" data-hex="#85CBD2"><div class="tag"><span class="cp">630 CP</span><span class="hex">#85CBD2</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#5BBAC7; color:#101820;" data-hex="#5BBAC7"><div class="tag"><span class="cp">631 CP</span><span class="hex">#5BBAC7</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#0099AD; color:#ffffff;" data-hex="#0099AD"><div class="tag"><span class="cp">632 CP</span><span class="hex">#0099AD</span></div><div class="copied">Copied</div></div>
+          <div class="swatch base" style="background:#006682; color:#ffffff;" data-hex="#006682"><div class="tag"><span class="cp">Blue 634 CP</span><span class="hex">#006682</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#043546; color:#ffffff;" data-hex="#043546"><div class="tag"><span class="cp">303 CP</span><span class="hex">#043546</span></div><div class="copied">Copied</div></div>
+        </div>
+      </div>
+
+      <div class="family">
+        <div class="family-label">
+          <span class="pantone-name">1815 CP</span>
+          <h3>Brick</h3>
+          <span class="base-hex">#852B26</span>
+        </div>
+        <div class="swatch-row">
+          <div class="swatch" style="background:#EED9DA; color:#101820;" data-hex="#EED9DA"><div class="tag"><span class="cp">705 CP</span><span class="hex">#EED9DA</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#E7A6A8; color:#101820;" data-hex="#E7A6A8"><div class="tag"><span class="cp">1765 CP</span><span class="hex">#E7A6A8</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#DD454F; color:#ffffff;" data-hex="#DD454F"><div class="tag"><span class="cp">1787 CP</span><span class="hex">#DD454F</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#D4282F; color:#ffffff;" data-hex="#D4282F"><div class="tag"><span class="cp">1795 CP</span><span class="hex">#D4282F</span></div><div class="copied">Copied</div></div>
+          <div class="swatch base" style="background:#852B26; color:#ffffff;" data-hex="#852B26"><div class="tag"><span class="cp">Brick 1815 CP</span><span class="hex">#852B26</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#482626; color:#ffffff;" data-hex="#482626"><div class="tag"><span class="cp">2449 CP</span><span class="hex">#482626</span></div><div class="copied">Copied</div></div>
+        </div>
+      </div>
+
+      <div class="family">
+        <div class="family-label">
+          <span class="pantone-name">7750 CP</span>
+          <h3>Green</h3>
+          <span class="base-hex">#6B6C36</span>
+        </div>
+        <div class="swatch-row">
+          <div class="swatch" style="background:#C3D778; color:#101820;" data-hex="#C3D778"><div class="tag"><span class="cp">365 CP</span><span class="hex">#C3D778</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#BCCF11; color:#101820;" data-hex="#BCCF11"><div class="tag"><span class="cp">3570 CP</span><span class="hex">#BCCF11</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#9A9D03; color:#ffffff;" data-hex="#9A9D03"><div class="tag"><span class="cp">384 CP</span><span class="hex">#9A9D03</span></div><div class="copied">Copied</div></div>
+          <div class="swatch base" style="background:#6B6C36; color:#ffffff;" data-hex="#6B6C36"><div class="tag"><span class="cp">Green 7750 CP</span><span class="hex">#6B6C36</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#474C21; color:#ffffff;" data-hex="#474C21"><div class="tag"><span class="cp">5747 CP</span><span class="hex">#474C21</span></div><div class="copied">Copied</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="scope-note">The six base hex values (marked BASE above) stay fixed across digital and print.</div>
+  </section>
+
+  <section class="wrap" id="logo">
+    <div class="section-head">
+      <div class="num">02</div>
+      <div>
+        <h2>Visit Chattanooga logo</h2>
+        <p class="section-note">Toggle the mark and the background below.</p>
+      </div>
+    </div>
+
+    <div class="logo-demo">
+      <div class="logo-stage" id="stage">
+        <svg id="logoSvg" viewBox="0 0 2000 2000" aria-label="Chattanooga destination mark">
+          <path class="p-ink" d="M694.07,528.8l-83.61,21.06v162.95c-18.93,4.06-37.93,9.25-56.8,14.56v-163.18s-83.61,20.78-83.61,20.78v449.05c27.86-11.51,55.64-20.84,83.61-29.21v-208.99c18.7-5.64,37.84-11.36,56.8-15.4,0,68.63,0,132.14,0,209.82,27.87-6.06,55.73-10.88,83.61-13.89v-447.53Z"/>
+          <path class="p-ink" d="M958.15,462.63l-165.94,41.82c-37.65,9.67-58.08,30.24-58.08,69.16v398.97c27.87-.93,55.74-2.91,83.61-1.44v-211.06c18.35.65,38.3,1.52,56.8,3.1,0,60.79,0,147.22,0,210.97,27.87,2.73,55.74,5.84,83.61,9.57V462.63ZM817.74,693.73v-98.01c0-13.01,8.85-24.35,21.48-27.51l35.32-8.84s0,103.68,0,137.45c-18.94-1.66-37.88-2.41-56.8-3.09Z"/>
+          <path class="p-ink" d="M998.22,452.6v75.83l69.93-17.49v489.21c27.87,3.9,55.73,5.89,83.61,8.86,0-135.55,0-518.9,0-518.9l110.12-27.64v553.57c27.87.87,55.74-.77,83.61-2.73V441.59s23.21-5.83,29.34-7.36c-.38-35.34.74-64.84,19.58-80.98l-396.17,99.35Z"/>
+          <path class="p-ink" d="M333.61,1014.86v-320.39s96.37-24.1,96.37-24.1v-75.31l-123.81,30.71c-37.65,10.09-56.16,29.11-56.16,67.4,0,0,0,254.1,0,416.78,0,38.17,17.28,34.85,56.17,9.3,42.23-27.74,86.53-49.72,123.81-67.87,0-28.94,0-59.44,0-87.43-32,14.95-64.26,31.29-96.37,50.9Z"/>
+          <path class="p-ink" d="M1639.05,291.9l-165.94,41.85c-37.65,9.09-58.08,29.32-58.08,68.19v600.82c27.87-6.13,55.64-14.21,83.6-25.4v-208.9c18.93-7.28,37.87-14.99,56.8-24.1v207.08c27.87-14.03,55.74-32.66,83.61-52.28V291.9ZM1498.64,700.07v-274.68c0-13.01,8.86-24.35,21.48-27.51l35.32-8.84v284.98c-18.84,9.47-37.87,18.87-56.8,26.05Z"/>
+          <path class="p-gold" d="M958.16,1073.48c0-37.74-19.15-55.01-55.52-58.83-37.23-3.72-75.1-5.55-112.33-6.01-37.66-.31-56.16,18.88-56.16,57,0,120.79,0,249.26,0,387.77v137.12c0,37.31,20.42,46.56,56.16,37.32l112.33-28.21c37.65-9.63,55.52-29.99,55.52-66.03v-112h0v-348.13ZM873.91,1530.06l-56.16,14.44v-109.16s0,0,0,0v-352.89c18.43.69,37.13,1.72,56.16,3.11v444.5Z"/>
+          <path class="p-gold" d="M1221.7,1102.82c0-36.22-19.15-51.45-55.52-54.76-37.24-3.44-74.46-6.87-111.69-11.99-37.64-5.18-56.16,8.99-56.16,43.9,0,114.22,0,444.07,0,444.07,0,37.3,20.42,46.66,56.16,37.6l111.69-28.13c37.65-9.43,55.52-29.69,55.52-65.71,0,0,0-246.88,0-364.98ZM1138.09,1462.67l-56.16,14.35v-54.79h0v-308.83c18.72,2.24,37.44,3.88,56.16,5.79,0,107.54,0,207.66,0,305.3v38.18Z"/>
+          <path class="p-gold" d="M1485.88,1227.86c-28.36,9.71-55.94,18.13-83.6,23.05,0,7.22,0,144.08,0,144.08l-56.8,14.7s0-229.31,0-284.9c40.84-3.64,82.3-12.04,122.54-24.91,0-24.25,0-47.03,0-72.37-49.35,15.39-98.7,22.07-148.06,25.08-37.64,2.15-58.07,16.6-58.08,54.1,0,119.07,0,350.92,0,350.92,0,37.91,20.42,46.74,57.44,37.56l166.57-41.73s0-217.48,0-225.57Z"/>
+          <path class="p-gold" d="M1750,855.89c-55.55,52.42-110.32,91.76-165.94,122.59-37.76,20.93-58.08,38.99-58.08,77.75,0,133.91,0,387.16,0,387.16l83.61-20.92s0-105.02,0-148.98c18.59-11.66,38.08-24.05,56.8-38.13,0,47.64,0,172.83,0,172.83l83.61-20.96s0-415.64,0-531.32ZM1625.76,1020.26c14.84-10.23,29.68-21.91,44.53-33.53,0,56.72,0,115.87,0,169.81-18.91,14.47-38.33,29.86-56.8,41.63v-154.59c0-9.33,4.59-18.02,12.27-23.32Z"/>
+          <path class="p-gold" d="M694.07,1014.59c-27.96,3.25-56.1,8.34-83.6,14.64,0,39.73-.15,298.79-.15,298.79.05.08.1.17.15.25v28.58l-70.37-308.03c-22.65,7.38-47.42,16.51-70.04,26.3,0,148.25,0,632.99,0,632.99l83.61-21.04s0-305.12,0-341.33l56.8,230.2v96.96l83.61-20.96s0-501.45,0-637.34Z"/>
+        </svg>
+        <div class="stage-error" id="stageError">
+          <div class="stage-error-title">Not usable</div>
+          <div class="stage-error-msg" id="stageErrorMsg"></div>
+        </div>
+      </div>
+
+      <div class="logo-controls">
+        <div class="ctrl-group">
+          <div class="label">Mark color</div>
+          <div class="btn-row" id="markBtns">
+            <button data-mode="full" class="active">Full color</button>
+            <button data-mode="reverse">Full color — reverse</button>
+            <button data-mode="white">All white</button>
+            <button data-mode="dark">All dark</button>
+          </div>
+        </div>
+        <div class="ctrl-group">
+          <div class="label">Background</div>
+          <div class="btn-row" id="bgBtns">
+            <button data-bg="light" class="active">Light</button>
+            <button data-bg="dark">Dark</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="typography">
+    <div class="section-head">
+      <div class="num">03</div>
+      <div>
+        <h2>Typography</h2>
+        <p class="section-note">Filson Pro, loaded via Adobe Fonts. This scale is pulled from two places already in use: the hierarchy running through this guide, and the tracked-caps headline/sentence-case body pattern in current print materials like the Partnership Kit.</p>
+      </div>
+    </div>
+
+    <div class="scale-list">
+      <div class="scale-row">
+        <div class="scale-meta">
+          <div class="scale-name">H1 — Display</div>
+          <code class="scale-spec">font-weight: 800;<br>font-size: clamp(40px, 6vw, 64px);<br>letter-spacing: 0.02em;<br>text-transform: uppercase;<br>line-height: 1.0;</code>
+          <div class="scale-use">Page titles, campaign headlines</div>
+        </div>
+        <div class="scale-sample h1-sample">Explore Chattanooga</div>
+      </div>
+
+      <div class="scale-row">
+        <div class="scale-meta">
+          <div class="scale-name">H2 — Section</div>
+          <code class="scale-spec">font-weight: 800;<br>font-size: clamp(26px, 3vw, 34px);<br>letter-spacing: 0.03em;<br>text-transform: uppercase;</code>
+          <div class="scale-use">Section headers within a page</div>
+        </div>
+        <div class="scale-sample h2-sample">Plan Your Visit</div>
+      </div>
+
+      <div class="scale-row">
+        <div class="scale-meta">
+          <div class="scale-name">H3 — Subhead</div>
+          <code class="scale-spec">font-weight: 800;<br>font-size: 19px;<br>letter-spacing: 0.09em;<br>text-transform: uppercase;</code>
+          <div class="scale-use">Card titles, package/subhead names</div>
+        </div>
+        <div class="scale-sample h3-sample">Featured Itinerary</div>
+      </div>
+
+      <div class="scale-row">
+        <div class="scale-meta">
+          <div class="scale-name">Eyebrow / Label</div>
+          <code class="scale-spec">font-weight: 700;<br>font-size: 13px;<br>letter-spacing: 0.125em;<br>text-transform: uppercase;</code>
+          <div class="scale-use">Small tracked labels — the house signature</div>
+        </div>
+        <div class="scale-sample label-sample">Visitor Guide</div>
+      </div>
+
+      <div class="scale-row">
+        <div class="scale-meta">
+          <div class="scale-name">Body</div>
+          <code class="scale-spec">font-weight: 400;<br>font-size: 16px;<br>line-height: 1.6;<br>text-transform: none;</code>
+          <div class="scale-use">Descriptions, itineraries, long-form content</div>
+        </div>
+        <div class="scale-sample body-sample">Regular weight, sentence case, for anything meant to be read at length rather than scanned.</div>
+      </div>
+
+      <div class="scale-row">
+        <div class="scale-meta">
+          <div class="scale-name">Stat / Data Number</div>
+          <code class="scale-spec">font-weight: 800;<br>font-size: clamp(36px, 5vw, 56px);<br>font-variant-numeric: tabular-nums;</code>
+          <div class="scale-use">Callout numbers — impressions, users, dollar figures</div>
+        </div>
+        <div class="scale-sample stat-sample">2.3M
+          <span class="stat-label">Active users, VisitChattanooga.com — 2025</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="ui-colors">
+    <div class="section-head">
+      <div class="num">04</div>
+      <div>
+        <h2>Color for interfaces</h2>
+      </div>
+    </div>
+
+    <div class="family-grid">
+      <div class="family no-label">
+        <div class="swatch-row equal">
+          <div class="swatch" style="background:#BCCF11; color:#101820;" data-hex="#BCCF11"><div class="tag"><span class="cp">3570 CP</span><span class="hex">#BCCF11</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#D4282F; color:#ffffff;" data-hex="#D4282F"><div class="tag"><span class="cp">1795 CP</span><span class="hex">#D4282F</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#F2CE1B; color:#101820;" data-hex="#F2CE1B"><div class="tag"><span class="cp">116 CP</span><span class="hex">#F2CE1B</span></div><div class="copied">Copied</div></div>
+          <div class="swatch" style="background:#0099AD; color:#ffffff;" data-hex="#0099AD"><div class="tag"><span class="cp">632 CP</span><span class="hex">#0099AD</span></div><div class="copied">Copied</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="state-legend">
+      <div>
+        <div class="name">Success</div>
+        <p>Confirmations, completed states, positive system feedback.</p>
+      </div>
+      <div>
+        <div class="name">Error</div>
+        <p>Form validation and destructive actions.</p>
+      </div>
+      <div>
+        <div class="name">Warning</div>
+        <p>Cautionary states. Proposed — Gold 116 CP.</p>
+      </div>
+      <div>
+        <div class="name">Info</div>
+        <p>Neutral system messaging. Proposed — reuses Blue 632.</p>
+      </div>
+    </div>
+
+    <div class="scope-note">These four tokens are suggestions for the interface feedback on the new site.</div>
+  </section>
+
+  <section class="wrap" id="roadmap">
+    <div class="section-head">
+      <div class="num">05</div>
+      <div>
+        <h2>What's next</h2>
+        <p class="section-note">Website-scope for now. These build out as the full brand standards work continues.</p>
+      </div>
+    </div>
+    <div class="road-list">
+      <div class="road-row"><span class="idx">02</span><h4>Photography &amp; Imagery</h4><span class="status">In progress</span></div>
+      <div class="road-row"><span class="idx">03</span><h4>Geometry &amp; Iconography</h4><span class="status">Not started</span></div>
+      <div class="road-row"><span class="idx">04</span><h4>UI Patterns</h4><span class="status">Not started</span></div>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <div class="brandlock">
+      <svg class="mark" viewBox="0 0 2000 2000" aria-label="Visit Chattanooga">
+        <path d="M694.07,528.8l-83.61,21.06v162.95c-18.93,4.06-37.93,9.25-56.8,14.56v-163.18s-83.61,20.78-83.61,20.78v449.05c27.86-11.51,55.64-20.84,83.61-29.21v-208.99c18.7-5.64,37.84-11.36,56.8-15.4,0,68.63,0,132.14,0,209.82,27.87-6.06,55.73-10.88,83.61-13.89v-447.53Z"/>
+        <path d="M958.15,462.63l-165.94,41.82c-37.65,9.67-58.08,30.24-58.08,69.16v398.97c27.87-.93,55.74-2.91,83.61-1.44v-211.06c18.35.65,38.3,1.52,56.8,3.1,0,60.79,0,147.22,0,210.97,27.87,2.73,55.74,5.84,83.61,9.57V462.63ZM817.74,693.73v-98.01c0-13.01,8.85-24.35,21.48-27.51l35.32-8.84s0,103.68,0,137.45c-18.94-1.66-37.88-2.41-56.8-3.09Z"/>
+        <path d="M998.22,452.6v75.83l69.93-17.49v489.21c27.87,3.9,55.73,5.89,83.61,8.86,0-135.55,0-518.9,0-518.9l110.12-27.64v553.57c27.87.87,55.74-.77,83.61-2.73V441.59s23.21-5.83,29.34-7.36c-.38-35.34.74-64.84,19.58-80.98l-396.17,99.35Z"/>
+        <path d="M333.61,1014.86v-320.39s96.37-24.1,96.37-24.1v-75.31l-123.81,30.71c-37.65,10.09-56.16,29.11-56.16,67.4,0,0,0,254.1,0,416.78,0,38.17,17.28,34.85,56.17,9.3,42.23-27.74,86.53-49.72,123.81-67.87,0-28.94,0-59.44,0-87.43-32,14.95-64.26,31.29-96.37,50.9Z"/>
+        <path d="M1639.05,291.9l-165.94,41.85c-37.65,9.09-58.08,29.32-58.08,68.19v600.82c27.87-6.13,55.64-14.21,83.6-25.4v-208.9c18.93-7.28,37.87-14.99,56.8-24.1v207.08c27.87-14.03,55.74-32.66,83.61-52.28V291.9ZM1498.64,700.07v-274.68c0-13.01,8.86-24.35,21.48-27.51l35.32-8.84v284.98c-18.84,9.47-37.87,18.87-56.8,26.05Z"/>
+        <path fill="var(--logo-gold)" d="M958.16,1073.48c0-37.74-19.15-55.01-55.52-58.83-37.23-3.72-75.1-5.55-112.33-6.01-37.66-.31-56.16,18.88-56.16,57,0,120.79,0,249.26,0,387.77v137.12c0,37.31,20.42,46.56,56.16,37.32l112.33-28.21c37.65-9.63,55.52-29.99,55.52-66.03v-112h0v-348.13ZM873.91,1530.06l-56.16,14.44v-109.16s0,0,0,0v-352.89c18.43.69,37.13,1.72,56.16,3.11v444.5Z"/>
+        <path fill="var(--logo-gold)" d="M1221.7,1102.82c0-36.22-19.15-51.45-55.52-54.76-37.24-3.44-74.46-6.87-111.69-11.99-37.64-5.18-56.16,8.99-56.16,43.9,0,114.22,0,444.07,0,444.07,0,37.3,20.42,46.66,56.16,37.6l111.69-28.13c37.65-9.43,55.52-29.69,55.52-65.71,0,0,0-246.88,0-364.98ZM1138.09,1462.67l-56.16,14.35v-54.79h0v-308.83c18.72,2.24,37.44,3.88,56.16,5.79,0,107.54,0,207.66,0,305.3v38.18Z"/>
+        <path fill="var(--logo-gold)" d="M1485.88,1227.86c-28.36,9.71-55.94,18.13-83.6,23.05,0,7.22,0,144.08,0,144.08l-56.8,14.7s0-229.31,0-284.9c40.84-3.64,82.3-12.04,122.54-24.91,0-24.25,0-47.03,0-72.37-49.35,15.39-98.7,22.07-148.06,25.08-37.64,2.15-58.07,16.6-58.08,54.1,0,119.07,0,350.92,0,350.92,0,37.91,20.42,46.74,57.44,37.56l166.57-41.73s0-217.48,0-225.57Z"/>
+        <path fill="var(--logo-gold)" d="M1750,855.89c-55.55,52.42-110.32,91.76-165.94,122.59-37.76,20.93-58.08,38.99-58.08,77.75,0,133.91,0,387.16,0,387.16l83.61-20.92s0-105.02,0-148.98c18.59-11.66,38.08-24.05,56.8-38.13,0,47.64,0,172.83,0,172.83l83.61-20.96s0-415.64,0-531.32ZM1625.76,1020.26c14.84-10.23,29.68-21.91,44.53-33.53,0,56.72,0,115.87,0,169.81-18.91,14.47-38.33,29.86-56.8,41.63v-154.59c0-9.33,4.59-18.02,12.27-23.32Z"/>
+        <path fill="var(--logo-gold)" d="M694.07,1014.59c-27.96,3.25-56.1,8.34-83.6,14.64,0,39.73-.15,298.79-.15,298.79.05.08.1.17.15.25v28.58l-70.37-308.03c-22.65,7.38-47.42,16.51-70.04,26.3,0,148.25,0,632.99,0,632.99l83.61-21.04s0-305.12,0-341.33l56.8,230.2v96.96l83.61-20.96s0-501.45,0-637.34Z"/>
+      </svg>
+      <span class="tag">Brand Guide</span>
+    </div>
+    <p>Visit Chattanooga — Brand Guide</p>
+  </footer>
+</main>
+
+<script>
+  document.querySelectorAll('.swatch').forEach(function(sw){
+    sw.addEventListener('click', function(){
+      var hex = sw.getAttribute('data-hex');
+      if(navigator.clipboard){ navigator.clipboard.writeText(hex).catch(function(){}); }
+      sw.classList.add('copied-active');
+      setTimeout(function(){ sw.classList.remove('copied-active'); }, 900);
+    });
+  });
+
+  var markBtns = document.querySelectorAll('#markBtns button');
+  var bgBtns = document.querySelectorAll('#bgBtns button');
+  var stage = document.getElementById('stage');
+  var logoSvg = document.getElementById('logoSvg');
+  var stageError = document.getElementById('stageError');
+  var stageErrorMsg = document.getElementById('stageErrorMsg');
+  var inkPaths = document.querySelectorAll('#logoSvg .p-ink');
+  var goldPaths = document.querySelectorAll('#logoSvg .p-gold');
+
+  var LOGO_INK = '#101820';
+  var LOGO_GOLD = '#dcab00';
+
+  var currentMark = 'full';
+  var currentBg = 'light';
+
+  var INVALID_REASONS = {
+    'white|light': "All-white mark on a light background — no contrast.",
+    'dark|dark': "All-dark mark on a dark background — no contrast.",
+    'reverse|light': "Full Color — Reverse uses a white mark. It disappears on a light background.",
+    'full|dark': "Full Color's dark ink disappears on a dark background."
+  };
+
+  function render(){
+    var key = currentMark + '|' + currentBg;
+    var reason = INVALID_REASONS[key];
+
+    markBtns.forEach(function(b){ b.classList.toggle('active', b.dataset.mode === currentMark); });
+    bgBtns.forEach(function(b){ b.classList.toggle('active', b.dataset.bg === currentBg); });
+
+    if(reason){
+      logoSvg.style.visibility = 'hidden';
+      stageError.classList.add('active');
+      stageErrorMsg.textContent = reason;
+      stage.style.background = currentBg === 'dark' ? LOGO_INK : '#ffffff';
+      return;
+    }
+
+    stageError.classList.remove('active');
+    logoSvg.style.visibility = 'visible';
+
+    var inkColor = LOGO_INK, goldColor = LOGO_GOLD;
+    if(currentMark === 'reverse'){ inkColor = '#ffffff'; goldColor = LOGO_GOLD; }
+    if(currentMark === 'white'){ inkColor = '#ffffff'; goldColor = '#ffffff'; }
+    if(currentMark === 'dark'){ inkColor = LOGO_INK; goldColor = LOGO_INK; }
+    inkPaths.forEach(function(p){ p.style.fill = inkColor; });
+    goldPaths.forEach(function(p){ p.style.fill = goldColor; });
+
+    stage.style.background = currentBg === 'dark' ? LOGO_INK : '#ffffff';
+  }
+
+  markBtns.forEach(function(b){ b.addEventListener('click', function(){ currentMark = b.dataset.mode; render(); }); });
+  bgBtns.forEach(function(b){ b.addEventListener('click', function(){ currentBg = b.dataset.bg; render(); }); });
+
+  render();
+</script>
+
+</body>
+</html>
